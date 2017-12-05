@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/darker_gray">
+
+    <ImageView
+        android:src="@drawable/head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+    <ImageView
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:src="@drawable/bcci"
+        />
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/score"
+            android:layout_gravity="center"
+            android:fontFamily="monospace"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="723/8    vs   345/8"/>
+        <ImageView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:src="@drawable/slcb"/>
+
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Important Cricketing Links : "
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:fontFamily="monospace"/>
+
+    <LinearLayout
+        android:id="@+id/links"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/espn"
+        android:layout_margin="5dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/espn"/>
+    <ImageView
+        android:id="@+id/cricbuzz"
+        android:layout_marginRight="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/cricbuzz"/>
+    <ImageView
+        android:id="@+id/icc"
+        android:layout_margin="5dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/icc"/>
+    </LinearLayout>
+
+</LinearLayout>
