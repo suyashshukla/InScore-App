@@ -3,25 +3,28 @@ package com.example.suyash.inscore;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 
     static String dataURL = "http://cricapi.com/api/cricket?apikey=RGYaXlSsxQZpCtU6Z8o9jXngLuq1";
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        CricketTask cricketTask = new CricketTask();
+        cricketTask.execute();
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
 
         CricketTask cricketTask = new CricketTask();
         cricketTask.execute();
-
 
         //Intents for important Cricketing Links
 
@@ -89,11 +91,23 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
     }
+
+
 
     public void updateData(String s) {
         TextView score = findViewById(R.id.score);
+
+        ProgressBar progressBar = findViewById(R.id.pbar);
+
+        progressBar.setIndeterminate(true);
+        progressBar.setVisibility(View.INVISIBLE);
+
+
         score.setText(s);
+
+
 
 
     }
@@ -105,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
 
             if(s==null)
-                s=" ";
+                s="No Internet Connection";
 
 
             Log.v("MainActivity", "Value of String is " + s);
@@ -136,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... strings) {
+            
             try {
 
                 return CricUtils.getJSON(dataURL);
