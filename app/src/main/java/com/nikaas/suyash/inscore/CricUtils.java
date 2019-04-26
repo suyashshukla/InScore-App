@@ -1,4 +1,4 @@
-package com.example.suyash.inscore;
+package com.nikaas.suyash.inscore;
 
 import android.util.Log;
 
@@ -13,6 +13,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 
 /**
  * Created by Suyash on 12/4/2017.
@@ -25,7 +26,7 @@ public class CricUtils {
 
 
 
-    public static String getJSON(String url)throws IOException {
+    public static ArrayList<String> getJSON(String url)throws IOException {
 
         URL address = createURL(url);
 
@@ -34,7 +35,7 @@ public class CricUtils {
 
 
 
-    private static String makeHTTPRequest(URL url)throws IOException {
+    private static ArrayList<String> makeHTTPRequest(URL url)throws IOException {
         JSON.delete(0,JSON.length());
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
@@ -59,14 +60,19 @@ public class CricUtils {
     }
 
 
-    private static String getScore(String jsonData) {
+    private static ArrayList<String> getScore(String jsonData) {
         try {
             JSONObject jsonObject = new JSONObject(jsonData);
             JSONArray jsonArray = jsonObject.optJSONArray("data");
 
-            JSONObject match = jsonArray.getJSONObject(1);
+            ArrayList<String> matchData = new ArrayList<>();
+            int i = 0;
 
-            return match.getString("description");
+            while(!jsonArray.isNull(i)){
+                matchData.add(((JSONObject)jsonArray.get(i++)).get("description").toString());
+            }
+
+            return matchData;
 
         } catch (JSONException e) {
             return null;

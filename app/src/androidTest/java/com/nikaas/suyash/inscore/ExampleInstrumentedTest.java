@@ -1,4 +1,4 @@
-package com.example.suyash.inscore;
+package com.nikaas.suyash.inscore;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
